@@ -138,8 +138,8 @@ const Game = () => {
     <div className="game-main-content">
       <Hexagon letters={letters} onLetterClick={handleHexagonClick}/>
       <div className="game-main-content-wordlist"> 
-      {words.map(word => (
-        <p className={isPangram(word) ? "pangram" : ""}>{properCase(word)}</p>
+      {words.map((word,idx) => (
+        <p key={idx} className={isPangram(word) ? "pangram" : ""}>{properCase(word)}</p>
       ))}
       </div>
     </div>

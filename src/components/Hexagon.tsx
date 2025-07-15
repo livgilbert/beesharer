@@ -7,9 +7,10 @@ interface HexagonProps {
 
 const Hexagon = (props: HexagonProps) => {
 
-  const clickHandler = ():(letter:string)=> void => {
-    if (props.onLetterClick) {
-      return props.onLetterClick
+  const clickHandler = (letter:string):( () => void ) => {
+    const letterClick = props.onLetterClick
+    if (letterClick) {
+      return () => { letterClick(letter) }
     }
     return () => {}
   }
@@ -17,7 +18,7 @@ const Hexagon = (props: HexagonProps) => {
   return (
     <div className="hexagon-container">
     {props.letters.map((letter, idx) => (
-    <div className="hexagonlet" key={idx} onClick={clickHandler} >
+    <div className="hexagonlet" key={idx} onClick={clickHandler(letter)} >
       <p>{letter}</p>
     </div>
     ))}
