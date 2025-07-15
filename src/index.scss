@@ -1,0 +1,144 @@
+body {
+  background-color: #0f0320;
+  color: #f2f2f2;
+  font-family: sans-serif
+}
+
+.home {
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  margin: 0 auto;
+  width: 341px;
+  &-lettersetter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0 24px 0;
+    input {
+      width: 32px;
+      height: 36px;
+      font-size: 32px;
+      display: block;
+      text-align: center;
+      border: none;
+      &:nth-child(7) {
+        background-color: #e3d03c;
+      }
+    }
+  }
+
+  #create-game {
+    border: 0px;
+    border-radius: 24px;
+    height: 72px;
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    font-size: 32px;
+    background-color: #31a2e9;
+    cursor: pointer;
+    &:hover {
+      background-color: #1182ce;
+    }
+  }
+}
+
+.game {
+  width: 800px;
+  margin: 0 auto;
+  &-word-container {
+    border: 2px solid #ffffff11;
+    border-radius: 8px;
+    margin: 24px 0;
+    padding: 24px;
+    
+    p {
+      color: #f1f1f1ee;
+      font-size: 37px;
+      text-align: center; 
+      margin: 0 0 24px 0;
+
+      // keep the p at full height even when empty
+      &:after {
+        content: " ";
+        font-size: 0;
+        white-space: pre;
+      }
+      
+      .golden {
+        color: #e3d03c;
+      }
+
+      #cursor {
+        display: inline-block;
+        width: 2px;
+        height: 26px;
+        background-color: #f1f1f1ee;
+        margin-left: 4px;
+        animation: blink-animation 800ms steps(2,start) infinite;
+
+        @keyframes blink-animation {
+          to {
+            visibility: hidden;
+          }
+        }
+      }
+    }
+  }
+  &-button-container {
+    height: 48px;
+    text-align: center;
+    button {
+      border: 0;
+      height: 100%;
+      font-size: 18px;
+      padding: 8px 24px;
+      color: white;
+      cursor: pointer;
+      &:nth-child(1) {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        background-color: #cc0802
+      }
+      &:nth-child(2) {
+        background-color: #a102b3
+      }
+      &:nth-child(3) {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        background-color: #09a106
+      }
+      &:hover {
+        opacity: 0.8
+      }
+      &:active {
+        opacity: 0.7
+      }
+    }
+  }
+  &-main-content {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 50% 50%;
+    &-wordlist {
+      border: 2px solid #ffffff11;
+      border-radius: 8px;
+      padding: 8px;
+
+      p {
+        padding: 0;
+        margin: 8px;
+
+        &.pangram {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

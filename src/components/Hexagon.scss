@@ -1,0 +1,68 @@
+.hexagon-container {
+  max-width: 341px;
+  aspect-ratio: 1;
+  position: relative;
+
+  .hexagonlet {
+    height: 115px;
+    aspect-ratio: 1/cos(30deg);
+    clip-path: polygon(50% -50%,100% 50%,50% 150%,0 50%);
+    background: #2b3c5d;
+    position: absolute;
+    cursor: pointer;
+
+    &:nth-child(1) {
+      top: 60px;
+      left: 0;
+    }
+
+    &:nth-child(2) {
+      top: 180px;
+      left: 0;
+    }
+
+    &:nth-child(3) {
+      top: 240px;
+      left: 104px;
+    }
+
+    &:nth-child(4) {
+      top: 180px;
+      left: 208px;
+    }
+
+    &:nth-child(5) {
+      top: 60px;
+      left: 208px;
+    }
+
+    &:nth-child(6) {
+      top: 0px;
+      left: 104px;
+    }
+
+    &:nth-child(7) {
+      top: 120px;
+      left: 104px;
+      background-color: #93800c;
+      &:hover  {
+        background-color: #93800cdd
+      }
+    }
+
+
+    &:hover {
+      background-color: #2b3c5daa
+    }
+
+    p {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 44px;
+    }
+  }
+}
