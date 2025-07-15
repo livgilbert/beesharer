@@ -80,9 +80,14 @@ const Game = () => {
   }
 
   const shuffle = () => {
-    const firstSix = letters.splice(0,6)
-    console.log(firstSix) 
-    console.log(letters) 
+    const newLetters = [...letters]
+    for (let i = newLetters.length - 2; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i+1))
+      const temp = newLetters[i]
+      newLetters[i] = newLetters[j]
+      newLetters[j] = temp
+    }
+    setLetters(newLetters)
   }
 
   const wordValidity = () => {
