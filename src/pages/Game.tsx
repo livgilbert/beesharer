@@ -8,6 +8,7 @@ enum WordValidity {
   Valid,
   TooShort,
   NoCenterLetter,
+  AlreadyInList,
   NotInDictionary
 } 
 
@@ -77,6 +78,9 @@ const Game = () => {
     if (validity == WordValidity.NoCenterLetter) {
       setError("Must include center letter")
     }
+    if (validity == WordValidity.AlreadyInList) {
+      setError("Already in word list")
+    }
   }
 
   const shuffle = () => {
@@ -96,6 +100,9 @@ const Game = () => {
     }
     if (word.indexOf(letters[6]) < 0) {
       return WordValidity.NoCenterLetter
+    }
+    if (words.includes(word)) {
+      return WordValidity.AlreadyInList
     }
     return WordValidity.Valid
   }
