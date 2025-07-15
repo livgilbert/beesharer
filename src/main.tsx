@@ -12,7 +12,6 @@ createRoot(document.getElementById('root')!).render(
   <Route path="/" element={<Home />} />
   <Route path="/game/:gameId" element={<Game />} />
   </Routes>
-  <p id="creds">Liv Gilbert, 2025. Made with love for Madeline.</p>
   </BrowserRouter>
   </StrictMode>,
 )

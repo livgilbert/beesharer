@@ -4,11 +4,19 @@ import Hexagon from "../components/Hexagon"
 import { onValue, ref, update } from "firebase/database"
 import db from "../db"
 
+enum WordValidity {
+  Valid,
+  TooShort,
+  NoCenterLetter,
+  NotInDictionary
+} 
+
 const Game = () => {
   const { gameId } = useParams()
-  const [letters, setLetters] = useState([])
-  const [words, setWords] = useState([])
+  const [letters, setLetters] = useState<string[]>([])
+  const [words, setWords] = useState<string[]>([])
   const [word, setWord] = useState("")
+  const [error, setError] = useState("")
 
   useEffect(() => {
     const query = ref(db, "game/" + gameId)
@@ -26,7 +34,8 @@ const Game = () => {
 
   const handleKeyPress = (e:KeyboardEvent) => {
     e.preventDefault()
-    if (letters.includes(e.key.toUpperCase())) {
+    const key = e.key.toUpperCase()
+    if (letters.includes(key)) {
       const newWord = word + e.key.toUpperCase()
       if (newWord.length <= 20) {
         setWord(newWord)
@@ -35,12 +44,12 @@ const Game = () => {
     if (e.keyCode == 8 && word.length > 0) {
       deleteChar()
     }
-    if (e.keyCode == 13 && word.length >= 4) {
+    if (e.keyCode == 13) {
       submitWord()
     }
   }
 
-  const handleHexagonClick = (letter: String) => {
+  const handleHexagonClick = (letter: string) => {
     const newWord = word + letter
     if (newWord.length <= 20) {
       setWord(newWord)
@@ -53,11 +62,21 @@ const Game = () => {
   }
 
   const submitWord = () => {
-    const newWords = [...words, word]
-    update(ref(db, 'game/' + gameId), {
-      words: newWords
-    })
-    setWord("")
+    const validity = wordValidity()
+    if (validity == WordValidity.Valid) {
+      const newWords = [...words, word]
+      update(ref(db, 'game/' + gameId), {
+        words: newWords
+      })
+      setWord("")
+      setError("")
+    }
+    if (validity == WordValidity.TooShort) {
+      setError("Too short")
+    }
+    if (validity == WordValidity.NoCenterLetter) {
+      setError("Must include center letter")
+    }
   }
 
   const shuffle = () => {
@@ -66,11 +85,17 @@ const Game = () => {
     console.log(letters) 
   }
 
-  const isValidWord = (word:String):boolean => {
-    return true
+  const wordValidity = () => {
+    if (word.length < 4) {
+      return WordValidity.TooShort
+    }
+    if (word.indexOf(letters[6]) < 0) {
+      return WordValidity.NoCenterLetter
+    }
+    return WordValidity.Valid
   }
 
-  const isPangram = (word:String):boolean => {
+  const isPangram = (word:string):boolean => {
     for (const char of letters) {
       if (word.indexOf(char) < 0) {
         return false
@@ -79,7 +104,7 @@ const Game = () => {
     return true
   }
 
-  const properCase = (word:String):String => {
+  const properCase = (word:string):string => {
     return word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase()
   }
 
@@ -93,14 +118,15 @@ const Game = () => {
   return (
     <div className="game">
     <div className="game-word-container">
-      <p>{word.split("").map((wordLetter,idx) => (
+      <p className="game-word-entry">{word.split("").map((wordLetter,idx) => (
         <span key={idx} className={(wordLetter == letters[6]) ? "golden" : ""}>{wordLetter}</span>
       ))}
       <span id="cursor"></span>
       </p>
+      <p className="game-error">{error}</p>
       <div className="game-button-container">
         <button onClick={deleteChar}>Delete</button>
-        <button onClick={deleteChar}>Shuffle</button>
+        <button onClick={shuffle}>Shuffle</button>
         <button onClick={submitWord}>Enter</button>
       </div>
     </div>

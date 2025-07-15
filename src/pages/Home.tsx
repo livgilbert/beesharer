@@ -8,8 +8,7 @@ import humanId from 'human-id'
 const Home = () => {
 
   const [letters, setLetters] = useState(["", "", "", "", "", "", ""])
-  const [selectedIdx, setSelectedIdx] = useState(0)
-  const inputRefs = useRef([])
+  const inputRefs = useRef<Array<HTMLInputElement | null>>([])
   const navigate = useNavigate()
 
   const updateLetter = (newIndex: number, newVal: string) => {
@@ -19,7 +18,10 @@ const Home = () => {
     ))
     setLetters(newLetters)
     if (newIndex < 6 && newVal != "") {
-      inputRefs.current[newIndex + 1].focus()
+      const nextInput = inputRefs.current[newIndex + 1]
+      if (nextInput) {
+        nextInput.focus()
+      }
     } 
   }
 
@@ -33,12 +35,21 @@ const Home = () => {
     })
   }
 
+  const setInputRef = (index: number) => (el: HTMLInputElement | null) => {
+    inputRefs.current[index] = el;
+  };
+
   return <div className="home">
   <h2>Create Game</h2>
   <p>Step 1: Select 7 letters.</p>
   <div className="home-lettersetter">
   {([0,1,2,3,4,5,6]).map(num => (
-    <input autoFocus={selectedIdx == num} key={num} maxLength={1} ref={e => (inputRefs.current[num]=e)} value={letters[num]} onChange={e => {updateLetter(num, e.target.value)}}/>  
+    <input key={num} 
+           maxLength={1} 
+           ref={setInputRef(num)} 
+           value={letters[num]} 
+           onChange={e => {updateLetter(num, e.target.value)}}
+     />  
   ))}
   </div>
   <Hexagon letters={letters}></Hexagon>
