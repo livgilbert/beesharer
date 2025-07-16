@@ -16,6 +16,7 @@ const Game = () => {
   const { gameId } = useParams()
   const [letters, setLetters] = useState<string[]>([])
   const [words, setWords] = useState<string[]>([])
+  const [wordList, setWordList] = useState<string[]>([])
   const [word, setWord] = useState("")
   const [error, setError] = useState("")
 
@@ -26,8 +27,12 @@ const Game = () => {
       if (snapshot.exists()) {
         if (data.letters) {
           setLetters(data.letters)
-        } if (data.words) {
+        } 
+        if (data.words) {
           setWords(data.words)
+        }
+        if (data.wordList) {
+          setWordList(data.wordList)
         }
       }
     })
@@ -81,6 +86,9 @@ const Game = () => {
     if (validity == WordValidity.AlreadyInList) {
       setError("Already in word list")
     }
+    if (validity == WordValidity.NotInDictionary) {
+      setError("Not in dictionary")
+    }
   }
 
   const shuffle = () => {
@@ -103,6 +111,9 @@ const Game = () => {
     }
     if (words.includes(word)) {
       return WordValidity.AlreadyInList
+    }
+    if (!wordList.includes(word)) {
+      return WordValidity.NotInDictionary
     }
     return WordValidity.Valid
   }
