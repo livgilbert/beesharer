@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import Hexagon from "../components/Hexagon"
+import ProgressBar from '../components/ProgressBar'
 import { onValue, ref, update } from "firebase/database"
 import db from "../db"
+import { isPangram } from "../helpers"
 
 enum WordValidity {
   Valid,
@@ -19,6 +21,7 @@ const Game = () => {
   const [wordList, setWordList] = useState<string[]>([])
   const [word, setWord] = useState("")
   const [error, setError] = useState("")
+  const [showGrid, setShowGrid] = useState(false)
 
   useEffect(() => {
     const query = ref(db, "game/" + gameId)
@@ -118,15 +121,6 @@ const Game = () => {
     return WordValidity.Valid
   }
 
-  const isPangram = (word:string):boolean => {
-    for (const char of letters) {
-      if (word.indexOf(char) < 0) {
-        return false
-      }
-    }
-    return true
-  }
-
   const properCase = (word:string):string => {
     return word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase()
   }
@@ -153,11 +147,12 @@ const Game = () => {
         <button onClick={submitWord}>Enter</button>
       </div>
     </div>
+    <ProgressBar wordList={wordList} foundWords={words} letters={letters} />
     <div className="game-main-content">
       <Hexagon letters={letters} onLetterClick={handleHexagonClick}/>
       <div className="game-main-content-wordlist"> 
       {words.map((word,idx) => (
-        <p key={idx} className={isPangram(word) ? "pangram" : ""}>{properCase(word)}</p>
+        <p key={idx} className={isPangram(word, letters) ? "pangram" : ""}>{properCase(word)}</p>
       ))}
       </div>
     </div>

@@ -1,1 +1,2 @@
-validate words
+user names or emojis or something
+progress bar animations
