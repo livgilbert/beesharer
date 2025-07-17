@@ -19,7 +19,7 @@ const Hexagon = (props: HexagonProps) => {
     <div className="hexagon-container">
     {props.letters.map((letter, idx) => (
     <div className="hexagonlet" key={idx} onClick={clickHandler(letter)} >
-      <p>{letter}</p>
+      <p className="noselect">{letter}</p>
     </div>
     ))}
     </div>

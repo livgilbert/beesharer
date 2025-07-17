@@ -32,8 +32,6 @@ const Home = () => {
     } 
   }
 
-  console.log(letters) 
-
   const createGame = () => {
     if (letters.includes("")) {
       return
