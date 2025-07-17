@@ -1,1 +1,4 @@
 mobile
+pull nyt letters daily and wordlist
+delete stale games
+show game link w copy button
