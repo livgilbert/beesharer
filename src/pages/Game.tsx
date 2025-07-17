@@ -9,6 +9,7 @@ import ProfileContext from "../ProfileContext"
 import type { Word } from "../types"
 import ProfileIcon from "../components/ProfileIcon"
 import WordGrid from "../components/WordGrid"
+import './Game.scss'
 
 enum WordValidity {
   Valid,

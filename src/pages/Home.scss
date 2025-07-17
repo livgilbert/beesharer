@@ -1,0 +1,45 @@
+.home {
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  margin: 0 auto;
+  width: 341px;
+  &-lettersetter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0 24px 0;
+    input {
+      width: 32px;
+      height: 36px;
+      font-size: 32px;
+      display: block;
+      text-align: center;
+      border: none;
+      &:nth-child(7) {
+        background-color: #e3d03c;
+      }
+    }
+  }
+
+  #create-game {
+    border: 0px;
+    border-radius: 24px;
+    height: 72px;
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    font-size: 32px;
+    background-color: #31a2e9;
+    cursor: pointer;
+    &:hover {
+      background-color: #1182ce;
+    }
+  }
+}
+

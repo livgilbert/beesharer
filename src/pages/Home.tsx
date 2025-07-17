@@ -4,6 +4,7 @@ import db from '../db'
 import { ref, set } from "firebase/database"
 import { useNavigate } from 'react-router'
 import humanId from 'human-id'
+import './Home.scss'
 
 const Home = () => {
 
