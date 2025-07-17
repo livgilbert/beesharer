@@ -8,6 +8,7 @@
     background-color: rgb(227, 190, 60);
     height: 22px;
     margin: 1px 1px;
-    border-radius: 6px
+    border-radius: 6px;
+    transition: width 500ms ease-in-out;
   }
 }

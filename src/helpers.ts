@@ -7,4 +7,13 @@ const isPangram = (word:string, letters: string[]):boolean => {
   return true
 }
 
-export { isPangram }
+const wordHasValidLetters = (word:string, letters:string[]):boolean => {
+  for (const letter of word) {
+    if (!letters.includes(letter)) {
+      return false
+    }
+  }
+  return true
+}
+
+export { isPangram, wordHasValidLetters }

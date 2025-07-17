@@ -27,7 +27,7 @@ const calculateScore = (words: string[], letters: string[]):number => {
 const ProgressBar = (props: ProgressBarProps) => {
   const [score, setScore] = useState<number>(0)
   const highestPossible = calculateScore(props.wordList, props.letters)
-  const completeProportion = score / highestPossible
+  const completeProportion = (highestPossible > 0) ? score / highestPossible : 0
 
   useEffect(() => {
     setScore(calculateScore(props.foundWords, props.letters))
