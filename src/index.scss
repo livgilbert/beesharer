@@ -56,12 +56,15 @@ body {
   }
 }
 
+.border {
+  border: 2px solid #ffffff11;
+  border-radius: 8px;
+}
+
 .game {
   width: 800px;
   margin: 0 auto;
   &-word-container {
-    border: 2px solid #ffffff11;
-    border-radius: 8px;
     margin: 24px 0;
     padding: 24px;
     position: relative;
@@ -158,8 +161,6 @@ body {
     grid-template-rows: auto;
     grid-template-columns: 50% 50%;
     &-wordlist {
-      border: 2px solid #ffffff11;
-      border-radius: 8px;
       padding: 8px;
 
       p {

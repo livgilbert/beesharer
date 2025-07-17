@@ -8,6 +8,7 @@ import { isPangram, wordHasValidLetters } from "../helpers"
 import ProfileContext from "../ProfileContext"
 import type { Word } from "../types"
 import ProfileIcon from "../components/ProfileIcon"
+import WordGrid from "../components/WordGrid"
 
 enum WordValidity {
   Valid,
@@ -25,7 +26,7 @@ const Game = () => {
   const [wordList, setCurrentWordList] = useState<string[]>([])
   const [currentWord, setCurrentWord] = useState<string>("")
   const [error, setError] = useState<string>("")
-  //const [showGrid, setShowGrid] = useState(false)
+  const [showGrid, setShowGrid] = useState(true)
   const profile = useContext(ProfileContext)
 
   const wordsTextOnly = words.map(w => w.text)
@@ -147,7 +148,7 @@ const Game = () => {
 
   return (
     <div className="game">
-    <div className="game-word-container">
+    <div className="game-word-container border">
       <div className="profile-container">
       <ProfileIcon profile={profile} size={34} />
       </div>
@@ -166,12 +167,13 @@ const Game = () => {
     <ProgressBar wordList={wordList} foundWords={wordsTextOnly} letters={letters} />
     <div className="game-main-content">
       <Hexagon letters={letters} onLetterClick={handleHexagonClick}/>
-      <div className="game-main-content-wordlist"> 
+      <div className="game-main-content-wordlist border"> 
       {words.map((word,idx) => (
         <p key={idx} className={isPangram(word.text, letters) ? "pangram" : ""}><ProfileIcon profile={word.user} /> {properCase(word.text)}</p>
       ))}
       </div>
     </div>
+    {showGrid && <WordGrid wordList={wordList} foundWords={wordsTextOnly} letters={letters} />}
     </div>
   )
 }
