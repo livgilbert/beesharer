@@ -1,6 +1,13 @@
 {
   "rules": {
-    ".read": "now < 1755068400000",  // 2025-8-13
-    ".write": "now < 1755068400000",  // 2025-8-13
+    ".read": true,  
+    "game": {
+      ".write": true
+    },
+    "users": {
+      "$uid": {
+        ".write": "$uid == auth.uid"
+      }
+    }
   }
 }
