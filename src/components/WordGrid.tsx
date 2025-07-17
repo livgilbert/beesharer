@@ -37,6 +37,7 @@ const WordGrid = (props: WordGridProps) => {
   return (
     <div className="word-grid border">
     <table className="word-grid-content">
+    <tbody>
     <tr>
     <th></th>
     { Array.from({length: maxLength - 3}, (_,i) => 4+i).map(wordLength => (
@@ -44,13 +45,14 @@ const WordGrid = (props: WordGridProps) => {
     ))}
     </tr>
     {startingLetters.map(startingLetter => (
-      <tr>
-      <td key={startingLetter}><p>{startingLetter}</p></td>
+      <tr key={startingLetter}>
+      <td key={`${startingLetter}-0`}><p>{startingLetter}</p></td>
       { Array.from({length: maxLength - 3}, (_,i) => 4+i).map(wordLength => (
-        <td key={wordLength}><p>{gridContent(startingLetter, wordLength)}</p></td>
+        <td key={`${startingLetter}-${wordLength}`}><p>{gridContent(startingLetter, wordLength)}</p></td>
       ))}
       </tr>
     ))}
+    </tbody>
     </table>
   </div>)
 }
