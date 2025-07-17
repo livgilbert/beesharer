@@ -26,7 +26,7 @@ const Game = () => {
   const [wordList, setCurrentWordList] = useState<string[]>([])
   const [currentWord, setCurrentWord] = useState<string>("")
   const [error, setError] = useState<string>("")
-  const [showGrid, setShowGrid] = useState(true)
+  const [showGrid, setShowGrid] = useState(false)
   const profile = useContext(ProfileContext)
 
   const wordsTextOnly = words.map(w => w.text)
@@ -173,7 +173,7 @@ const Game = () => {
       ))}
       </div>
     </div>
-    {showGrid && <WordGrid wordList={wordList} foundWords={wordsTextOnly} letters={letters} />}
+    {showGrid ? <WordGrid wordList={wordList} foundWords={wordsTextOnly} letters={letters} /> : <button id="grid-show" onClick={() => {setShowGrid(true)}}>Grid</button>}
     </div>
   )
 }
