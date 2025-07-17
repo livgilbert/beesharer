@@ -1,4 +1,4 @@
-import { StrictMode, useEffect, useState, createContext } from 'react'
+import { StrictMode, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.scss'
 import Home from './pages/Home'
@@ -9,7 +9,7 @@ import firebaseConfig from './firebaseConfig'
 import { initializeApp } from 'firebase/app'
 import { ref, get, set, child } from 'firebase/database'
 import * as emoji from 'node-emoji'
-import * as randomColor from 'randomcolor'
+import randomColor from 'randomcolor'
 import ProfileContext from './ProfileContext'
 import type { Profile } from './types'
 
@@ -20,7 +20,7 @@ import db from './db'
 
 const buildProfile = (uid: string):Profile => {
   const name = emoji.random().emoji
-  const color = randomColor.randomColor()
+  const color = randomColor()
   return {name, color, uid}
 }
 
