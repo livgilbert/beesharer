@@ -1,4 +1,1 @@
-progress bar animations
-set users within each game for db perms purposes
-show all users on game
-show pfp locally
+mobile
