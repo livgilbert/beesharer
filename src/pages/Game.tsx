@@ -4,7 +4,7 @@ import Hexagon from "../components/Hexagon"
 import ProgressBar from '../components/ProgressBar'
 import { onValue, ref, update } from "firebase/database"
 import db from "../db"
-import { isPangram, wordHasValidLetters } from "../helpers"
+import { isPangram, wordHasValidLetters, wordSort } from "../helpers"
 import ProfileContext from "../ProfileContext"
 import type { Word } from "../types"
 import ProfileIcon from "../components/ProfileIcon"
@@ -169,7 +169,7 @@ const Game = () => {
     <div className="game-main-content">
       <Hexagon letters={letters} onLetterClick={handleHexagonClick}/>
       <div className="game-main-content-wordlist border"> 
-      {words.map((word,idx) => (
+      {words.sort(wordSort).map((word,idx) => (
         <p key={idx} className={isPangram(word.text, letters) ? "pangram" : ""}><ProfileIcon profile={word.user} /> {properCase(word.text)}</p>
       ))}
       </div>

@@ -1,3 +1,5 @@
+import type { Word } from "./types"
+
 const isPangram = (word:string, letters: string[]):boolean => {
   for (const char of letters) {
     if (word.indexOf(char) < 0) {
@@ -16,4 +18,10 @@ const wordHasValidLetters = (word:string, letters:string[]):boolean => {
   return true
 }
 
-export { isPangram, wordHasValidLetters }
+const wordSort = (a:Word,b:Word) => {
+  const textA = a.text.toUpperCase()
+  const textB = b.text.toUpperCase()
+  return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+}
+
+export { isPangram, wordHasValidLetters, wordSort }
