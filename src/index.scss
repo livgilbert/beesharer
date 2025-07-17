@@ -64,6 +64,22 @@ body {
     border-radius: 8px;
     margin: 24px 0;
     padding: 24px;
+    position: relative;
+
+    .profile-container {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      height: 33px;
+      width: 33px;
+      font-size: 20px;
+      p {
+        margin: 0;
+        padding: 2px;
+        text-align: center;
+        border-radius: 4px;
+      }
+    }
 
     p.game-word-entry {
       color: #f1f1f1ee;

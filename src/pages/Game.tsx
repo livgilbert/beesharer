@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router"
 import Hexagon from "../components/Hexagon"
 import ProgressBar from '../components/ProgressBar'
 import { onValue, ref, update } from "firebase/database"
 import db from "../db"
 import { isPangram } from "../helpers"
+import ProfileContext from "../ProfileContext"
 
 enum WordValidity {
   Valid,
@@ -21,7 +22,8 @@ const Game = () => {
   const [wordList, setWordList] = useState<string[]>([])
   const [word, setWord] = useState("")
   const [error, setError] = useState("")
-  const [showGrid, setShowGrid] = useState(false)
+  //const [showGrid, setShowGrid] = useState(false)
+  const profile = useContext(ProfileContext)
 
   useEffect(() => {
     const query = ref(db, "game/" + gameId)
@@ -135,6 +137,9 @@ const Game = () => {
   return (
     <div className="game">
     <div className="game-word-container">
+      <div className="profile-container">
+      <p style={{backgroundColor: profile.color}}>{profile.name}</p>
+      </div>
       <p className="game-word-entry">{word.split("").map((wordLetter,idx) => (
         <span key={idx} className={(wordLetter == letters[6]) ? "golden" : ""}>{wordLetter}</span>
       ))}
