@@ -22,7 +22,7 @@
     }
 
     p.game-word-entry {
-      color: #f1f1f1ee;
+      color: black;
       font-size: 37px;
       text-align: center; 
       margin: 0 0 24px 0;
@@ -35,7 +35,7 @@
       }
 
       .golden {
-        color: #e3d03c;
+        color: #FFD133;
       }
 
       .gray {
@@ -46,7 +46,7 @@
         display: inline-block;
         width: 2px;
         height: 26px;
-        background-color: #f1f1f1ee;
+        background-color: black;
         margin-left: 4px;
         animation: blink-animation 800ms steps(2,start) infinite;
 
@@ -75,15 +75,15 @@
       &:nth-child(1) {
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
-        background-color: #cc0802
+        background-color: #ff2302
       }
       &:nth-child(2) {
-        background-color: #a102b3
+        background-color: #c109c3
       }
       &:nth-child(3) {
         border-top-right-radius: 8px;
         border-bottom-right-radius: 8px;
-        background-color: #09a106
+        background-color: #10b120
       }
       &:hover {
         opacity: 0.8
