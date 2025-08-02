@@ -1,12 +1,13 @@
 {
   "rules": {
-    ".read": true,  
     "game": {
-      ".write": true
+      ".write": true,
+      ".read": true
     },
     "users": {
       "$uid": {
-        ".write": "$uid == auth.uid"
+        ".write": "$uid == auth.uid",
+        ".read": true
       }
     }
   }
