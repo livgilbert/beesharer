@@ -1,13 +1,12 @@
 .progress-bar {
   height: 24px;
-  border: 2px solid #ffffff11;
+  border: 2px solid #FDFFF0;
   border-radius: 8px;
   margin: 24px 0;
 
   &-inner {
     background-color: rgb(227, 190, 60);
-    height: 22px;
-    margin: 1px 1px;
+    height: 24px;
     border-radius: 6px;
     transition: width 500ms ease-in-out;
   }
